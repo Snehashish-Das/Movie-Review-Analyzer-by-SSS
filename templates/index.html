@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Movie Review Analyzer</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+</head>
+<body class="{{ 'positive' if sentiment == 1 else 'negative' if sentiment == 0 }}">
+    <div class="container {{ 'positive' if sentiment == 1 else 'negative' if sentiment == 0 }}" id="container">
+        <div class="curve-shaped"></div>
+        <div class="form-box textbox">
+            <h2>Movie Review</h2>
+            <form action="/" method="POST">
+                <div class="input-box">
+                    <textarea name="movie_name" id="movie_name" cols="30" rows="1" class="inp"></textarea>
+                    <label for="movie_name">Movie Name</label>
+                    <!-- <i class="bx bxs-review"></i> -->
+                </div>
+                <div class="input-box">
+                    <textarea name="review" id="review" cols="30" rows="1" class="inp"></textarea>
+                    <label for="review">Review</label>
+                </div>
+                <div class="input-box">
+                    <button type="submit" class="btn">Check</button>
+                </div>
+            </form>
+        </div>
+        <div class="info-content Login">
+            <h2>Sentiment Analysis!</h2>
+            {% if sentiment != None %}
+            <p class="generated-text">
+                You wrote a <b>{{ 'Positive(✔️)' if sentiment == 1 else 'Negative(❌)' }}</b> Review for: <br>
+                <b>{{ movie_name }}</b>
+            </p>  
+            <br>
+            <div id="lottie-animation" class="animation-container"></div>
+            {% else %} 
+            <p class="generated-text">No review written till yet</p>
+            {% endif %} 
+        </div>
+    </div>
+
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/bodymovin/5.7.7/lottie.min.js"></script>
+    <script>
+        // Load and render the Lottie animation
+        const lottieContainer = document.getElementById('lottie-animation');
+        const lottieData = {
+            container: lottieContainer,
+            renderer: 'svg',
+            loop: true,
+            autoplay: true,
+            path: '{{ lottie_path }}'
+        };
+        const lottieAnim = lottie.loadAnimation(lottieData);
+
+        
+        
+    </script>
+
+</body>
+</html>
