@@ -5,6 +5,22 @@ import pymongo
 import warnings
 warnings.filterwarnings("ignore", category=UserWarning, module='sklearn')
 
+# Download 'punkt' if not already downloaded
+try:
+    nltk.data.find('tokenizers/punkt')
+except LookupError:
+    nltk.download('punkt')
+
+try:
+    nltk.data.find('corpora/stopwords')
+except LookupError:
+    nltk.download('stopwords')
+
+try:
+    nltk.data.find('corpora/wordnet')
+except LookupError:
+    nltk.download('wordnet')
+    
 app = Flask(__name__)
 
 # Load the sentiment analysis model and TF-IDF vectorizer
