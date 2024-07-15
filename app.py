@@ -3,6 +3,7 @@ from flask import Flask, render_template, request, url_for
 import pickle
 import pymongo
 import warnings
+import nltk
 warnings.filterwarnings("ignore", category=UserWarning, module='sklearn')
 
 # Download 'punkt' if not already downloaded
