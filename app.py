@@ -6,6 +6,8 @@ import warnings
 import nltk
 warnings.filterwarnings("ignore", category=UserWarning, module='sklearn')
 
+nltk.data.path.append("./nltk_data")
+
 # Download 'punkt' if not already downloaded
 try:
     nltk.data.find('tokenizers/punkt')
